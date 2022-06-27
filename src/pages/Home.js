@@ -16,7 +16,7 @@ export default class Home extends Component {
 
   componentDidMount() {
     axios
-      .get(API_URL + "produk?kategori.nama_kategori=" + this.state.categoriYangDipilih)
+      .get(API_URL + "kategori/getById.php=" + this.state.categoriYangDipilih)
       .then((res) => {
         const menus = res.data;
         this.setState({ menus });
@@ -33,7 +33,7 @@ export default class Home extends Component {
     });
 
     axios
-      .get(API_URL + "produk?kategori.nama_kategori=" + value)
+      .get(API_URL + "kategori/getById.php=" + value)
       .then((res) => {
         const menus = res.data;
         this.setState({ menus });

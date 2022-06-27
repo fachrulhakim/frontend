@@ -30,10 +30,11 @@ export default class ListCategories extends Component {
 
   componentDidMount() {
     axios
-      .get(API_URL + "kategori")
+      .get(API_URL + "kategori/getById" +
+          ".php")
       .then((res) => {
-        const kategori = res.data;
-        this.setState({ kategori });
+        const kategoris = res.data;
+        this.setState({ kategoris });
       })
       .catch((error) => {
         console.log("Error yaa ", error);
@@ -51,15 +52,15 @@ export default class ListCategories extends Component {
         <hr />
         <ListGroup>
           {kategori &&
-            kategori.map((kategori) => (
+            kategori.map((kategoriview) => (
               <ListGroup.Item
-                key={kategori.id_kategori}
-                onClick={() => changeKategori(kategori.nama_kategori)}
-                className={kategoriYangDipilih === kategori.nama_kategori && "kategori-aktif"}
+                key={kategoriview.id_kategori}
+                onClick={() => changeKategori(kategoriview.nama_kategori)}
+                className={kategoriYangDipilih === kategoriview.nama_kategori && "kategori-aktif"}
                 style={{cursor: 'pointer'}}
               >
                 <h5>
-                  <Icon nama={kategori.nama_kategori} /> {kategori.nama_kategori}
+                  <Icon nama={kategoriview.nama_kategori} /> {kategoriview.nama_kategori}
                 </h5>
               </ListGroup.Item>
             ))}
